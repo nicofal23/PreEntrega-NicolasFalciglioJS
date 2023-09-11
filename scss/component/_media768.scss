@@ -1,0 +1,23 @@
+@media (max-width:887px) {
+    main {
+        div {
+            img {
+                display: none;
+            }
+        }
+    }
+main{
+    .contenedor {
+        flex-direction: column;
+        .parcelascont {
+            display: flex;
+            border: 1px solid $colornegro;
+            flex-direction: column;
+            margin: 1.75rem;
+            width: 80%;
+            height: 47vh;
+            margin-top: 1rem;   
+        }
+    } 
+}
+}

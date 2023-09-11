@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&family=Sedgwick+Ave+Display&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+header {
+  border-bottom: 2px solid black; }
+  header div {
+    display: flex;
+    justify-content: space-between; }
+    header div h1 {
+      display: flex;
+      align-items: center;
+      color: black;
+      margin: 20px;
+      font-family: roboto; }
+    header div nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 40px; }
+
+main {
+  background-image: url("https://storage.googleapis.com/core-click/308788/auto1.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh; }
+  main .img {
+    display: flex;
+    justify-content: center; }
+    main .img img {
+      width: 100%; }
+  main .contenedor {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 22rem; }
+    main .contenedor .parcelascont {
+      display: flex;
+      border: 1px solid black;
+      flex-direction: column;
+      margin: 3.75rem;
+      width: 30%;
+      height: 37vh;
+      margin-top: 12.5rem; }
+  main .titulos {
+    padding: 66px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; }
+    main .titulos h2 {
+      animation: changeColor 3s infinite; }
+    main .titulos h3 {
+      animation: changeColor 3s infinite; }
+
+@keyframes changeColor {
+  0% {
+    color: red; }
+  50% {
+    color: #19048f; }
+  100% {
+    color: green; } }
+
+.show {
+  display: flex;
+  margin: 20px; }
+  .show .colum {
+    display: flex;
+    flex-direction: column;
+    margin: 2px; }
+  .show .buton {
+    display: flex;
+    justify-content: center; }
+    .show .buton .boton {
+      margin: 10px;
+      color: black;
+      padding: 14px 28px;
+      cursor: pointer;
+      border-radius: 5px;
+      background-color: #19048f;
+      border: 2px solid #0b7dda; }
+      .show .buton .boton {
+        background: #0b7dda;
+        color: #470bee; }
+
+.colum2 input {
+  margin: 20px;
+  display: block; }
+
+.total {
+  display: flex;
+  justify-content: center; }
+  .total h2 {
+    margin: 20px; }
+
+@media (max-width: 1024px) {
+  main .contenedor {
+    margin-left: .0625rem; } }
+
+@media (max-width: 887px) {
+  main div img {
+    display: none; }
+  main .contenedor {
+    flex-direction: column; }
+    main .contenedor .parcelascont {
+      display: flex;
+      border: 1px solid black;
+      flex-direction: column;
+      margin: 1.75rem;
+      width: 80%;
+      height: 47vh;
+      margin-top: 1rem; } }
+
+@media (max-width: 440px) {
+  header div {
+    display: flex;
+    flex-direction: column;
+    align-items: center; } }
