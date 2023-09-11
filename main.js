@@ -84,7 +84,7 @@ selectMarca.addEventListener("change", () => {
   // Lógica para agregar opciones de modelo según la marca seleccionada
   if (marcaSeleccionada === "Chevrolet") {
     selectModelo.innerHTML = `
-    <option value="">Elegir</option>
+      <option value="">Elegir</option>
       <option value="Agile">Agile</option>
       <option value="Aveo">Aveo</option>
     `;
