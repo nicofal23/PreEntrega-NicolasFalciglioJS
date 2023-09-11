@@ -4,6 +4,7 @@ let apellidoGuardado = "";
 let dniGuardado = "";
 let correoGuardado = "";
 
+//seleccion marca 
 class Vehiculo {
   constructor(marca) {
     this.marca = marca;
@@ -30,7 +31,6 @@ const selectMarca = document.getElementById("marca");
 const selectModelo = document.getElementById("modelo");
 const selectAnio = document.getElementById("anio");
 
-// Itera a través del arreglo de vehículos y crea una opción para cada uno
 vehiculos.forEach(vehiculo => {
   const option = document.createElement("option");
   option.value = vehiculo.marca;
@@ -38,30 +38,27 @@ vehiculos.forEach(vehiculo => {
   selectMarca.appendChild(option);
 });
 
-// Objeto que almacena las opciones de año para cada marca y modelo
+// constante que almacena las opciones de año para cada marca y modelo
+
+
 const opcionesAnio = {
   Chevrolet: {
     Agile: [2020, 2021, 2022],
     Aveo: [2019, 2020, 2021],
-    // Agregar opciones de año para otros modelos de Chevrolet
   },
   Ford: {
     EcoSport: [2020, 2021, 2022],
     Escape: [2019, 2020, 2021],
-    // Agregar opciones de año para otros modelos de Ford
   },
   Peugeot: {
     "208": [2020, 2021, 2022],
     "2008": [2019, 2020, 2021],
-    // Agregar opciones de año para otros modelos de Peugeot
   },
-  // Agregar opciones de año para otras marcas y modelos
 };
 
-// Función para llenar el select de año en función de la marca y el modelo seleccionados
+// Función para completar año y modelo dependiendo la marca
 function llenarSelectAnio(marca, modelo) {
   const opciones = opcionesAnio[marca] ? opcionesAnio[marca][modelo] : [];
-
   // Limpiar las opciones anteriores
   selectAnio.innerHTML = '<option value="">Año...</option>';
 
@@ -74,14 +71,13 @@ function llenarSelectAnio(marca, modelo) {
   });
 }
 
-// Agregar un evento de cambio al elemento selectMarca
 selectMarca.addEventListener("change", () => {
   // Habilitar el elemento selectModelo
   selectModelo.disabled = false;
 
   const marcaSeleccionada = selectMarca.value;
 
-  // Lógica para agregar opciones de modelo según la marca seleccionada
+  // opciones de modelo según la marca seleccionada
   if (marcaSeleccionada === "Chevrolet") {
     selectModelo.innerHTML = `
       <option value="">Elegir</option>
@@ -135,14 +131,16 @@ function mostrarPerfil1() {
 
   // Verificar si se han completado los datos antes de avanzar
   if (nombreGuardado && apellidoGuardado && dniGuardado && correoGuardado) {
-      // Avanzar a la pestaña "Costo"
-      document.getElementById("contact-tab").removeAttribute("disabled");
-      document.getElementById("myTab").querySelector('[data-bs-target="#contact-tab-pane"]').click();
+    // Habilitar y activar la pestaña "Costo"
+    document.getElementById("contact-tab").removeAttribute("disabled");
+    document.getElementById("contact-tab").classList.add("active");
+    document.getElementById("contact-tab-pane").classList.add("show", "active");
   } else {
-      // Mostrar un mensaje de error si no se completaron los datos
-      alert("Por favor, complete todos los campos antes de continuar.");
+    // Mostrar un mensaje de error si no se completaron los datos
+    alert("Por favor, complete todos los campos antes de continuar.");
   }
 }
+
 
 function calcularCotizacion() {
     let resultadoHTML = "<h2>Costo:</h2>";
