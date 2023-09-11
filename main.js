@@ -3,9 +3,13 @@ let nombreGuardado = "";
 let apellidoGuardado = "";
 let dniGuardado = "";
 let correoGuardado = "";
-let costoTotal = 0;
 
-// marca de vehículos
+class Vehiculo {
+  constructor(marca) {
+    this.marca = marca;
+  }
+}
+
 const vehiculos = [
   new Vehiculo("Chevrolet"),
   new Vehiculo("Ford"),
@@ -26,11 +30,11 @@ const selectMarca = document.getElementById("marca");
 const selectModelo = document.getElementById("modelo");
 const selectAnio = document.getElementById("anio");
 
-// Recorrer el arreglo de vehículos y agregar opciones al selectMarca
-vehiculos.forEach((vehiculo) => {
+// Itera a través del arreglo de vehículos y crea una opción para cada uno
+vehiculos.forEach(vehiculo => {
   const option = document.createElement("option");
   option.value = vehiculo.marca;
-  option.text = vehiculo.marca;
+  option.textContent = vehiculo.marca;
   selectMarca.appendChild(option);
 });
 
@@ -58,11 +62,8 @@ const opcionesAnio = {
 function llenarSelectAnio(marca, modelo) {
   const opciones = opcionesAnio[marca] ? opcionesAnio[marca][modelo] : [];
 
-  // Obtener el elemento selectAnio
-  const selectAnio = document.getElementById("anio");
-
   // Limpiar las opciones anteriores
-  selectAnio.innerHTML = '<option value="anio">Año...</option>';
+  selectAnio.innerHTML = '<option value="">Año...</option>';
 
   // Llenar el select con las opciones de año
   opciones.forEach((anio) => {
@@ -83,22 +84,23 @@ selectMarca.addEventListener("change", () => {
   // Lógica para agregar opciones de modelo según la marca seleccionada
   if (marcaSeleccionada === "Chevrolet") {
     selectModelo.innerHTML = `
-    <option value="Elegir">Elegir</option>
+    <option value="">Elegir</option>
       <option value="Agile">Agile</option>
       <option value="Aveo">Aveo</option>
     `;
   } else if (marcaSeleccionada === "Ford") {
     selectModelo.innerHTML = `
+      <option value="">Elegir</option>
       <option value="EcoSport">EcoSport</option>
       <option value="Escape">Escape</option>
       `;
   } else if (marcaSeleccionada === "Peugeot") {
     selectModelo.innerHTML = `
+      <option value="">Elegir</option>
       <option value="208">208</option>
       <option value="2008">2008</option>
     `;
   }
-  
 
   // Llenar el select de año dependiendo la marca y modelo seleccionado
   llenarSelectAnio(marcaSeleccionada, selectModelo.value);
@@ -142,13 +144,18 @@ function mostrarPerfil1() {
   }
 }
 
-
 function calcularCotizacion() {
     let resultadoHTML = "<h2>Costo:</h2>";
     resultadoHTML += "<p>Nombre: " + nombreGuardado + "</p>";
     resultadoHTML += "<p>Apellido: " + apellidoGuardado + "</p>";
     resultadoHTML += "<p>DNI: " + dniGuardado + "</p>";
     resultadoHTML += "<p>Correo: " + correoGuardado + "</p>";
+    
+    // Capturar los valores seleccionados de los elementos <select>
+    const marca = selectMarca.value;
+    const modelo = selectModelo.value;
+    const anio = selectAnio.value;
+    
     resultadoHTML += "<p>Marca: " + marca + "</p>";
     resultadoHTML += "<p>Modelo: " + modelo + "</p>";
     resultadoHTML += "<p>Año: " + anio + "</p>";
@@ -156,3 +163,4 @@ function calcularCotizacion() {
     let resultadoElement = document.getElementById("resultado");
     resultadoElement.innerHTML = resultadoHTML;
 }
+
