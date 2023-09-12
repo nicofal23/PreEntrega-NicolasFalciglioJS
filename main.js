@@ -161,7 +161,6 @@ function mostrarPerfil1() {
 }
 
 document.getElementById("botonContratar").addEventListener("click", () => {
-  // Agregar aquí la lógica para la contratación, si es necesario.
   alert("¡Contratación exitosa!");
 });
 
@@ -172,7 +171,7 @@ function calcularCotizacion() {
   resultadoHTML += "<p>DNI: " + dniGuardado + "</p>";
   resultadoHTML += "<p>Correo: " + correoGuardado + "</p>";
 
-  // Capturar los valores seleccionados de los elementos <select>
+  // traer los valores seleccionados de los elementos <select>
   const marca = selectMarca.value;
   const modelo = selectModelo.value;
   const anio = selectAnio.value;
@@ -181,21 +180,21 @@ function calcularCotizacion() {
   resultadoHTML += "<p>Modelo: " + modelo + "</p>";
   resultadoHTML += "<p>Año: " + anio + "</p>";
 
-  // Obtener el precio base según la marca seleccionada
+  // precio base según la marca seleccionada
   let precioBase = preciosBase[marca] || 0;
 
-  // Agregar precios adicionales según el modelo y el año seleccionados
+  // Agregar precios adicionales 
   if (modelo === "Agile") {
-    precioBase += 1000; // Precio adicional para el modelo Agile
+    precioBase += 1000; 
   } else if (modelo === "Aveo") {
-    precioBase += 1200; // Precio adicional para el modelo Aveo
+    precioBase += 1200; 
   }
 
-  // Agregar precios adicionales según el año seleccionado
+  // Agregar precios adicionales según el año 
   if (anio === "2022") {
-    precioBase += 800; // Precio adicional para el año 2022
+    precioBase += 800; 
   } else if (anio === "2021") {
-    precioBase += 600; // Precio adicional para el año 2021
+    precioBase += 600; 
   }
 
   resultadoHTML += "<p>Precio Total: $" + precioBase + "</p>";
