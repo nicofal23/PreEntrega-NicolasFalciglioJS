@@ -4,7 +4,7 @@ let apellidoGuardado = "";
 let dniGuardado = "";
 let correoGuardado = "";
 
-//seleccion marca 
+// seleccion marca
 class Vehiculo {
   constructor(marca) {
     this.marca = marca;
@@ -31,16 +31,28 @@ const selectMarca = document.getElementById("marca");
 const selectModelo = document.getElementById("modelo");
 const selectAnio = document.getElementById("anio");
 
-vehiculos.forEach(vehiculo => {
-  const option = document.createElement("option");
-  option.value = vehiculo.marca;
-  option.textContent = vehiculo.marca;
-  selectMarca.appendChild(option);
-});
+// Función para llenar el select de marcas
+function llenarSelectMarca() {
+  vehiculos.forEach(vehiculo => {
+    const option = document.createElement("option");
+    option.value = vehiculo.marca;
+    option.textContent = vehiculo.marca;
+    selectMarca.appendChild(option);
+  });
+}
+
+// Llenar el select de marcas al cargar la página
+llenarSelectMarca();
+
+// Precios base para cada marca
+const preciosBase = {
+  Chevrolet: 15000,
+  Ford: 16000,
+  Peugeot: 17000,
+  // Agregar precios base para otras marcas aquí...
+};
 
 // constante que almacena las opciones de año para cada marca y modelo
-
-
 const opcionesAnio = {
   Chevrolet: {
     Agile: [2020, 2021, 2022],
@@ -58,7 +70,7 @@ const opcionesAnio = {
 
 // Función para completar año y modelo dependiendo la marca
 function llenarSelectAnio(marca, modelo) {
-  const opciones = opcionesAnio[marca] ? opcionesAnio[marca][modelo] : [];
+  const opciones = opcionesAnio[marca][modelo] || [];
   // Limpiar las opciones anteriores
   selectAnio.innerHTML = '<option value="">Año...</option>';
 
@@ -89,7 +101,7 @@ selectMarca.addEventListener("change", () => {
       <option value="">Elegir</option>
       <option value="EcoSport">EcoSport</option>
       <option value="Escape">Escape</option>
-      `;
+    `;
   } else if (marcaSeleccionada === "Peugeot") {
     selectModelo.innerHTML = `
       <option value="">Elegir</option>
@@ -115,12 +127,17 @@ selectModelo.addEventListener("change", () => {
 });
 
 // Función para mostrar la segunda pestaña al hacer clic en el botón "siguiente" en la primera pestaña
-function mostrarPerfil() {
+document.getElementById("botonSiguiente").addEventListener("click", () => {
   // Ocultar la primera pestaña
   document.getElementById("home-tab-pane").classList.remove("show", "active");
   // Mostrar la segunda pestaña
   document.getElementById("profile-tab-pane").classList.add("show", "active");
-}
+});
+
+document.getElementById("botonSiguiente2").addEventListener("click", (e) => {
+  e.preventDefault();
+  mostrarPerfil1();
+});
 
 function mostrarPerfil1() {
   // Obtener los valores ingresados por el usuario
@@ -135,30 +152,55 @@ function mostrarPerfil1() {
     document.getElementById("contact-tab").removeAttribute("disabled");
     document.getElementById("contact-tab").classList.add("active");
     document.getElementById("contact-tab-pane").classList.add("show", "active");
+
+    // Calcular la cotización
+    calcularCotizacion();
   } else {
     // Mostrar un mensaje de error si no se completaron los datos
     alert("Por favor, complete todos los campos antes de continuar.");
   }
 }
 
+document.getElementById("botonContratar").addEventListener("click", () => {
+  // Agregar aquí la lógica para la contratación, si es necesario.
+  alert("¡Contratación exitosa!");
+});
 
 function calcularCotizacion() {
-    let resultadoHTML = "<h2>Costo:</h2>";
-    resultadoHTML += "<p>Nombre: " + nombreGuardado + "</p>";
-    resultadoHTML += "<p>Apellido: " + apellidoGuardado + "</p>";
-    resultadoHTML += "<p>DNI: " + dniGuardado + "</p>";
-    resultadoHTML += "<p>Correo: " + correoGuardado + "</p>";
-    
-    // Capturar los valores seleccionados de los elementos <select>
-    const marca = selectMarca.value;
-    const modelo = selectModelo.value;
-    const anio = selectAnio.value;
-    
-    resultadoHTML += "<p>Marca: " + marca + "</p>";
-    resultadoHTML += "<p>Modelo: " + modelo + "</p>";
-    resultadoHTML += "<p>Año: " + anio + "</p>";
+  let resultadoHTML = "<h2>Costo:</h2>";
+  resultadoHTML += "<p>Nombre: " + nombreGuardado + "</p>";
+  resultadoHTML += "<p>Apellido: " + apellidoGuardado + "</p>";
+  resultadoHTML += "<p>DNI: " + dniGuardado + "</p>";
+  resultadoHTML += "<p>Correo: " + correoGuardado + "</p>";
 
-    let resultadoElement = document.getElementById("resultado");
-    resultadoElement.innerHTML = resultadoHTML;
+  // Capturar los valores seleccionados de los elementos <select>
+  const marca = selectMarca.value;
+  const modelo = selectModelo.value;
+  const anio = selectAnio.value;
+
+  resultadoHTML += "<p>Marca: " + marca + "</p>";
+  resultadoHTML += "<p>Modelo: " + modelo + "</p>";
+  resultadoHTML += "<p>Año: " + anio + "</p>";
+
+  // Obtener el precio base según la marca seleccionada
+  let precioBase = preciosBase[marca] || 0;
+
+  // Agregar precios adicionales según el modelo y el año seleccionados
+  if (modelo === "Agile") {
+    precioBase += 1000; // Precio adicional para el modelo Agile
+  } else if (modelo === "Aveo") {
+    precioBase += 1200; // Precio adicional para el modelo Aveo
+  }
+
+  // Agregar precios adicionales según el año seleccionado
+  if (anio === "2022") {
+    precioBase += 800; // Precio adicional para el año 2022
+  } else if (anio === "2021") {
+    precioBase += 600; // Precio adicional para el año 2021
+  }
+
+  resultadoHTML += "<p>Precio Total: $" + precioBase + "</p>";
+
+  let resultadoElement = document.getElementById("resultado");
+  resultadoElement.innerHTML = resultadoHTML;
 }
-

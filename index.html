@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotizador de seguros</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
+
 <body>
     <header>
         <div class="header">
@@ -34,12 +37,12 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
                             data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
-                            aria-selected="true" >Datos</button>
+                            aria-selected="true">Datos</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
                             data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
-                            aria-selected="true" >Costo</button>
+                            aria-selected="true">Costo</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -57,7 +60,7 @@
                             </select>
                         </div>
                         <div class="buton">
-                            <button class="boton" onclick="mostrarPerfil()">siguiente</button>
+                            <button class="boton" id="botonSiguiente">siguiente</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
@@ -70,23 +73,19 @@
                                 <input type="email" name="mail" id="correo" placeholder="Correo..." required>
                             </div>
                             <div class="buton">
-                                <button class="boton" id="botonSiguiente" data-bs-target="#contact-tab-pane"
-                                    onclick="mostrarPerfil1()">Siguiente</button>
+                                <button class="boton" id="botonSiguiente2">Siguiente</button>
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
-                        tabindex="0">
-                        <div class="total">
-                            <h2>Costo:</h2>
-                        </div>
+                    <div class="tab-pane" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab">
                         <div id="resultado" class="result"></div>
                         <div class="buton">
-                            <button class="boton" onclick="calcularCotizacion()">Contratar</button>
+                            <button class="boton" id="botonContratar">Contratar</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab"
-                        tabindex="0">...</div>
+                        tabindex="0">...
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,4 +101,5 @@
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
