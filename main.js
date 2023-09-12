@@ -49,7 +49,6 @@ const preciosBase = {
   Chevrolet: 15000,
   Ford: 16000,
   Peugeot: 17000,
-  // Agregar precios base para otras marcas aquí...
 };
 
 // constante que almacena las opciones de año para cada marca y modelo
@@ -114,7 +113,7 @@ selectMarca.addEventListener("change", () => {
   llenarSelectAnio(marcaSeleccionada, selectModelo.value);
 });
 
-// Agregar un evento de cambio al elemento selectModelo
+// Agregar un cambio al elemento selectModelo
 selectModelo.addEventListener("change", () => {
   // Habilitar el elemento selectAnio
   selectAnio.disabled = false;
