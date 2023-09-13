@@ -10,7 +10,7 @@ class Vehiculo {
     this.marca = marca;
   }
 }
-
+ 
 const vehiculos = [
   new Vehiculo("Chevrolet"),
   new Vehiculo("Ford"),
