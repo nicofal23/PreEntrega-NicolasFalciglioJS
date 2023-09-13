@@ -101,6 +101,11 @@ main {
   main .contenedor {
     margin-left: .0625rem; } }
 
+@media (max-width: 910px) {
+  .colum2 {
+    display: flex;
+    flex-direction: column; } }
+
 @media (max-width: 887px) {
   main div img {
     display: none; }
