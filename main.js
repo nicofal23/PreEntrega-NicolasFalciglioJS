@@ -133,9 +133,14 @@ document.getElementById("botonSiguiente").addEventListener("click", () => {
   document.getElementById("profile-tab-pane").classList.add("show", "active");
 });
 
+
 document.getElementById("botonSiguiente2").addEventListener("click", (e) => {
-  e.preventDefault();
-  mostrarPerfil1();
+	e.preventDefault();
+	// Ocultar la primera pestaña
+	document.getElementById("profile-tab-pane").classList.remove("show", "active");
+	// Mostrar la segunda pestaña
+	document.getElementById("contact-tab").classList.add("show", "active");
+	mostrarPerfil1();
 });
 
 function mostrarPerfil1() {
