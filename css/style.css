@@ -43,7 +43,7 @@ main {
       margin: 3.75rem;
       width: 50%;
       height: 53vh;
-      margin-top: 12.5rem; }
+      margin-top: 5.5rem; }
   main .titulos {
     padding: 66px;
     display: flex;
@@ -96,6 +96,11 @@ main {
   justify-content: center; }
   .total h2 {
     margin: 20px; }
+
+.result {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; }
 
 @media (max-width: 1024px) {
   main .contenedor {
