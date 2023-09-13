@@ -17,7 +17,7 @@ const vehiculos = [
   new Vehiculo("Peugeot"),
   new Vehiculo("Citroën"),
   new Vehiculo("Renault"),
-  new Vehiculo("Volkswagen"),
+  new Vehiculo("Volkswagen"), 
   new Vehiculo("Toyota"),
   new Vehiculo("Honda"),
   new Vehiculo("Hyundai"),
