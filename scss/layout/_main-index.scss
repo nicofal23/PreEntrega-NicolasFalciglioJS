@@ -37,14 +37,13 @@ main{
     .contenedor{
         display: flex;
         justify-content: flex-start;
-        margin-left: 22rem;
         .parcelascont {
             display: flex;
             border: 1px solid $colornegro;
             flex-direction: column;
             margin: 3.75rem;
-            width: 30%;
-            height: 37vh;
+            width: 50%;
+            height: 48vh;
             margin-top: 12.5rem;   
         }
     }
@@ -98,6 +97,7 @@ main{
     } 
 }
 .colum2 {
+    display: flex;
     input {
         margin: 20px;
         display: block;

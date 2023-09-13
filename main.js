@@ -129,19 +129,31 @@ selectModelo.addEventListener("change", () => {
 document.getElementById("botonSiguiente").addEventListener("click", () => {
   // Ocultar la primera pestaña
   document.getElementById("home-tab-pane").classList.remove("show", "active");
+  // Quitar la clase "active" del botón de la primera pestaña
+  document.getElementById("home-tab").classList.remove("active");
+  
   // Mostrar la segunda pestaña
   document.getElementById("profile-tab-pane").classList.add("show", "active");
+  // Agregar la clase "active" al botón de la segunda pestaña
+  document.getElementById("profile-tab").classList.add("active");
 });
 
 
+// Función para mostrar la tercer pestaña al hacer clic en el botón "siguiente" en la segunda pestaña
 document.getElementById("botonSiguiente2").addEventListener("click", (e) => {
-	e.preventDefault();
-	// Ocultar la primera pestaña
-	document.getElementById("profile-tab-pane").classList.remove("show", "active");
-	// Mostrar la segunda pestaña
-	document.getElementById("contact-tab").classList.add("show", "active");
-	mostrarPerfil1();
+  e.preventDefault();
+  // Ocultar la segunda pestaña
+  document.getElementById("profile-tab-pane").classList.remove("show", "active");
+  // Quitar la clase "active" del botón de la segunda pestaña
+  document.getElementById("profile-tab").classList.remove("active");
+
+  // Mostrar la tercera pestaña
+  document.getElementById("contact-tab-pane").classList.add("show", "active");
+  // Agregar la clase "active" al botón de la tercera pestaña
+  document.getElementById("contact-tab").classList.add("active");
+  mostrarPerfil1();
 });
+
 
 function mostrarPerfil1() {
   // Obtener los valores ingresados por el usuario

@@ -35,15 +35,14 @@ main {
       width: 100%; }
   main .contenedor {
     display: flex;
-    justify-content: flex-start;
-    margin-left: 22rem; }
+    justify-content: flex-start; }
     main .contenedor .parcelascont {
       display: flex;
       border: 1px solid black;
       flex-direction: column;
       margin: 3.75rem;
-      width: 30%;
-      height: 37vh;
+      width: 50%;
+      height: 48vh;
       margin-top: 12.5rem; }
   main .titulos {
     padding: 66px;
@@ -86,9 +85,11 @@ main {
         background: #0b7dda;
         color: #470bee; }
 
-.colum2 input {
-  margin: 20px;
-  display: block; }
+.colum2 {
+  display: flex; }
+  .colum2 input {
+    margin: 20px;
+    display: block; }
 
 .total {
   display: flex;
