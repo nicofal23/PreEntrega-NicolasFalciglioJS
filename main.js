@@ -219,3 +219,6 @@ function calcularCotizacion() {
   let resultadoElement = document.getElementById("resultado");
   resultadoElement.innerHTML = resultadoHTML;
 }
+
+
+console.log (new Date)
