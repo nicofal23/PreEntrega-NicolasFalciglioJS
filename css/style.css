@@ -124,9 +124,10 @@ main {
     flex-direction: column; } }
 
 @media (max-width: 887px) {
-  main div img {
+  main div .img2 {
     display: none; }
   main .contenedor {
+    top: 100px;
     flex-direction: column; }
     main .contenedor .parcelascont {
       display: flex;
@@ -135,7 +136,7 @@ main {
       margin: 1.75rem;
       width: 80%;
       height: 47vh;
-      margin-top: 1rem; } }
+      margin-top: 6rem; } }
 
 @media (max-width: 440px) {
   header div {
