@@ -115,3 +115,15 @@ main{
     flex-wrap: wrap;
     gap: 10px;
 }
+.car {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: -50px;
+    transform: translateY(-50%);
+    transition: transform 5s linear;
+}
+.imagen {
+    width: 100px;
+    height: 100px;
+}
