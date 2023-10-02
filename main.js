@@ -1,3 +1,6 @@
+
+
+
 // variables de datos
 let nombreGuardado = "";
 let apellidoGuardado = "";
@@ -15,14 +18,14 @@ const vehiculos = [
   new Vehiculo("Chevrolet"),
   new Vehiculo("Ford"),
   new Vehiculo("Peugeot"),
-  new Vehiculo("Citroën"),
+  new Vehiculo("Citroen"),
   new Vehiculo("Renault"),
   new Vehiculo("Volkswagen"), 
   new Vehiculo("Toyota"),
   new Vehiculo("Honda"),
   new Vehiculo("Hyundai"),
   new Vehiculo("Kia"),
-  new Vehiculo("Mercedes-Benz"),
+  new Vehiculo("MercedesBenz"),
   new Vehiculo("BMW"),
   new Vehiculo("Audi"),
 ];
@@ -44,28 +47,9 @@ function llenarSelectMarca() {
 // Llenar el select de marcas al cargar la página
 llenarSelectMarca();
 
-// Precios base para cada marca
-const preciosBase = {
-  Chevrolet: 15000,
-  Ford: 16000,
-  Peugeot: 17000,
-};
 
-// constante que almacena las opciones de año para cada marca y modelo
-const opcionesAnio = {
-  Chevrolet: {
-    Agile: [2020, 2021, 2022],
-    Aveo: [2019, 2020, 2021],
-  },
-  Ford: {
-    EcoSport: [2020, 2021, 2022],
-    Escape: [2019, 2020, 2021],
-  },
-  Peugeot: {
-    "208": [2020, 2021, 2022],
-    "2008": [2019, 2020, 2021],
-  },
-};
+
+
 
 // Función para completar año y modelo dependiendo la marca
 function llenarSelectAnio(marca, modelo) {
@@ -208,10 +192,14 @@ function calcularCotizacion() {
   }
 
   // Agregar precios adicionales según el año 
-  if (anio === "2022") {
-    precioBase += 800; 
-  } else if (anio === "2021") {
-    precioBase += 600; 
+  if (anio === "2023") {
+    precioBase += 1800; 
+  } else if (anio === "2022") {
+    precioBase += 1600; 
+  }else if (anio === "2021") {
+    precioBase += 1400; 
+  }else if (anio === "2020") {
+    precioBase += 1200; 
   }
 
   resultadoHTML += "<p>Precio Total: $" + precioBase + "</p>";
