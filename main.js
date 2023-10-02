@@ -47,10 +47,6 @@ function llenarSelectMarca() {
 // Llenar el select de marcas al cargar la página
 llenarSelectMarca();
 
-
-
-
-
 // Función para completar año y modelo dependiendo la marca
 function llenarSelectAnio(marca, modelo) {
   const opciones = opcionesAnio[marca][modelo] || [];
@@ -66,36 +62,23 @@ function llenarSelectAnio(marca, modelo) {
   });
 }
 
+
+//evento para seleccionar modelo, los tipos de modelos estan en modelos.js
 selectMarca.addEventListener("change", () => {
   // Habilitar el elemento selectModelo
   selectModelo.disabled = false;
 
   const marcaSeleccionada = selectMarca.value;
+  const modelos = opcionesModelo[marcaSeleccionada];
 
-  // opciones de modelo según la marca seleccionada
-  if (marcaSeleccionada === "Chevrolet") {
-    selectModelo.innerHTML = `
-      <option value="">Elegir</option>
-      <option value="Agile">Agile</option>
-      <option value="Aveo">Aveo</option>
-    `;
-  } else if (marcaSeleccionada === "Ford") {
-    selectModelo.innerHTML = `
-      <option value="">Elegir</option>
-      <option value="EcoSport">EcoSport</option>
-      <option value="Escape">Escape</option>
-    `;
-  } else if (marcaSeleccionada === "Peugeot") {
-    selectModelo.innerHTML = `
-      <option value="">Elegir</option>
-      <option value="208">208</option>
-      <option value="2008">2008</option>
-    `;
-  }
+  // Crear las opciones de modelo según la marca seleccionada
+  const opcionesHTML = modelos.map(modelo => `<option value="${modelo}">${modelo || "Elegir"}</option>`).join('');
+  selectModelo.innerHTML = opcionesHTML;
 
   // Llenar el select de año dependiendo la marca y modelo seleccionado
   llenarSelectAnio(marcaSeleccionada, selectModelo.value);
 });
+
 
 // Agregar un cambio al elemento selectModelo
 selectModelo.addEventListener("change", () => {
@@ -121,8 +104,6 @@ document.getElementById("botonSiguiente").addEventListener("click", () => {
   // Agregar la clase "active" al botón de la segunda pestaña
   document.getElementById("profile-tab").classList.add("active");
 });
-
-
 // Función para mostrar la tercer pestaña al hacer clic en el botón "siguiente" en la segunda pestaña
 document.getElementById("botonSiguiente2").addEventListener("click", (e) => {
   e.preventDefault();
@@ -152,7 +133,6 @@ function mostrarPerfil1() {
     document.getElementById("contact-tab").removeAttribute("disabled");
     document.getElementById("contact-tab").classList.add("active");
     document.getElementById("contact-tab-pane").classList.add("show", "active");
-
     // Calcular la cotización
     calcularCotizacion();
   } else {
@@ -212,25 +192,3 @@ function calcularCotizacion() {
 console.log (new Date)
 
 
-//autito que recorre la pagina 
-document.addEventListener("DOMContentLoaded", function () {
-  const auto = document.getElementById("car");
-  auto.style.transform = "translateX(calc(100% + 50px))"; // mueve el auto fuera de la pantalla
-  
-  // Inicia la animación
-  setTimeout(function () {
-      auto.style.transform = "translateX(calc(100% + 50px))"; // Inicializa la posición del auto
-      requestAnimationFrame(function moveCar() {
-          const currentTransform = window.getComputedStyle(auto).getPropertyValue("transform");
-          const currentX = parseFloat(currentTransform.split(",")[4]);
-          if (currentX >= window.innerWidth + 50) {
-              // Cuando el auto cruzo toda la pantalla, reinicia la animación
-              auto.style.transform = "translateX(calc(100% + 50%))";
-          } else {
-              // Mueve el auto a la derecha
-              auto.style.transform = `translateX(${currentX + 500}px)`;
-              requestAnimationFrame(moveCar);
-          }
-      });
-  }, 1000); // Espera 1 segundo antes de iniciar la animación
-});
