@@ -1,19 +1,19 @@
 
 // Precios base para cada marca
 const preciosBase = {
-    Chevrolet: 15000,
-    Ford: 16000,
-    Peugeot: 17000,
-    Citroen: 16000,
-    Renault: 15000,
-    Volkswagen: 16000,
-    Toyota: 18000,
-    Honda:  17500,
-    Hyundai: 22000,
-    Kia: 19000,
-    MercedesBenz: 23600,
-    BMW: 24500,
-    Audi: 22500,
+    Chevrolet: 35000,
+    Ford: 46000,
+    Peugeot: 57000,
+    Citroen: 36000,
+    Renault: 25000,
+    Volkswagen: 36000,
+    Toyota: 38000,
+    Honda:  27500,
+    Hyundai: 42000,
+    Kia: 39000,
+    MercedesBenz: 53600,
+    BMW: 54500,
+    Audi: 62500,
   };
 
   // constante que almacena las opciones de año para cada marca y modelo

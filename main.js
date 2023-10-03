@@ -158,18 +158,19 @@ function calcularCotizacion() {
     precioBase += 1200; 
   }
 
-  //costo segun año
+ //costo segun año
 const añoActual = 2023;
 const factorDeDescuento = 0.05; // 5%
 
-// Verificar si el año está entre 2022 y 1965
-if (anio >= "1965" && anio <= "2022") {
+// Verificar si el año está entre 1954 y 2023
+if (anio >= "1954" && anio <= "2023") {
     const añosDiferencia = añoActual - anio;
     const descuento = añosDiferencia * factorDeDescuento;
     const precioConDescuento = precioBase - precioBase * descuento;
 
-    // Redondear el precio hacia arriba usando Math.ceil() y asignarlo a precioBase
-    precioBase = Math.ceil(precioConDescuento);
+    
+    //establecer un precio mínimo de $14,000 si el resultado da negativo 
+    precioBase = Math.max(Math.ceil(precioConDescuento), 14000);
 }
 
 
