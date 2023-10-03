@@ -1,11 +1,11 @@
-
-
-
 // variables de datos
 let nombreGuardado = "";
 let apellidoGuardado = "";
 let dniGuardado = "";
 let correoGuardado = "";
+const selectMarca = document.getElementById("marca");
+const selectModelo = document.getElementById("modelo");
+const selectAnio = document.getElementById("anio");
 
 // seleccion marca
 class Vehiculo {
@@ -30,9 +30,6 @@ const vehiculos = [
   new Vehiculo("Audi"),
 ];
 
-const selectMarca = document.getElementById("marca");
-const selectModelo = document.getElementById("modelo");
-const selectAnio = document.getElementById("anio");
 
 // Función para llenar el select de marcas
 function llenarSelectMarca() {
@@ -43,7 +40,6 @@ function llenarSelectMarca() {
     selectMarca.appendChild(option);
   });
 }
-
 // Llenar el select de marcas al cargar la página
 llenarSelectMarca();
 
@@ -61,7 +57,6 @@ function llenarSelectAnio(marca, modelo) {
     selectAnio.appendChild(option);
   });
 }
-
 
 //evento para seleccionar modelo, los tipos de modelos estan en modelos.js
 selectMarca.addEventListener("change", () => {
@@ -92,35 +87,39 @@ selectModelo.addEventListener("change", () => {
   llenarSelectAnio(marcaSeleccionada, modeloSeleccionado);
 });
 
+
+
+document.getElementById("botonContratar").addEventListener("click", () => {
+  alert("¡Contratación exitosa!");
+});
+
 // Función para mostrar la segunda pestaña al hacer clic en el botón "siguiente" en la primera pestaña
 document.getElementById("botonSiguiente").addEventListener("click", () => {
   // Ocultar la primera pestaña
   document.getElementById("home-tab-pane").classList.remove("show", "active");
   // Quitar la clase "active" del botón de la primera pestaña
   document.getElementById("home-tab").classList.remove("active");
-  
   // Mostrar la segunda pestaña
   document.getElementById("profile-tab-pane").classList.add("show", "active");
   // Agregar la clase "active" al botón de la segunda pestaña
   document.getElementById("profile-tab").classList.add("active");
 });
-// Función para mostrar la tercer pestaña al hacer clic en el botón "siguiente" en la segunda pestaña
+
+ // Función para mostrar la tercer pestaña al hacer clic en el botón "siguiente" en la segunda pestaña
 document.getElementById("botonSiguiente2").addEventListener("click", (e) => {
   e.preventDefault();
-  // Ocultar la segunda pestaña
+ // Ocultar la segunda pestaña
   document.getElementById("profile-tab-pane").classList.remove("show", "active");
-  // Quitar la clase "active" del botón de la segunda pestaña
-  document.getElementById("profile-tab").classList.remove("active");
+ // Quitar la clase "active" del botón de la segunda pestaña
+ document.getElementById("profile-tab").classList.remove("active");
+ // Mostrar la tercera pestaña
+ document.getElementById("contact-tab-pane").classList.add("show", "active");
+ // Agregar la clase "active" al botón de la tercera pestaña
+ document.getElementById("contact-tab").classList.add("active");
+ mostrarPerfil1();
+ });
 
-  // Mostrar la tercera pestaña
-  document.getElementById("contact-tab-pane").classList.add("show", "active");
-  // Agregar la clase "active" al botón de la tercera pestaña
-  document.getElementById("contact-tab").classList.add("active");
-  mostrarPerfil1();
-});
-
-
-function mostrarPerfil1() {
+ function mostrarPerfil1() {
   // Obtener los valores ingresados por el usuario
   nombreGuardado = document.getElementById("nombre").value;
   apellidoGuardado = document.getElementById("apellido").value;
@@ -138,12 +137,11 @@ function mostrarPerfil1() {
   } else {
     // Mostrar un mensaje de error si no se completaron los datos
     alert("Por favor, complete todos los campos antes de continuar.");
+    // Evitar cambiar de pestaña si los campos no están completos
+    return;
   }
 }
 
-document.getElementById("botonContratar").addEventListener("click", () => {
-  alert("¡Contratación exitosa!");
-});
 
 function calcularCotizacion() {
   // traer los valores seleccionados de los elementos <select>
@@ -160,16 +158,21 @@ function calcularCotizacion() {
     precioBase += 1200; 
   }
 
-  // Agregar precios adicionales según el año 
-  if (anio === "2023") {
-    precioBase += 1800; 
-  } else if (anio === "2022") {
-    precioBase += 1600; 
-  }else if (anio === "2021") {
-    precioBase += 1400; 
-  }else if (anio === "2020") {
-    precioBase += 1200; 
-  }
+  //costo segun año
+const añoActual = 2023;
+const factorDeDescuento = 0.05; // 5%
+
+// Verificar si el año está entre 2022 y 1965
+if (anio >= "1965" && anio <= "2022") {
+    const añosDiferencia = añoActual - anio;
+    const descuento = añosDiferencia * factorDeDescuento;
+    const precioConDescuento = precioBase - precioBase * descuento;
+
+    // Redondear el precio hacia arriba usando Math.ceil() y asignarlo a precioBase
+    precioBase = Math.ceil(precioConDescuento);
+}
+
+
  // Crear el resultado HTML con clases de estilo
  let resultadoHTML = `
  <div class="resultado-container">
