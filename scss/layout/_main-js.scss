@@ -1,0 +1,25 @@
+.resultado-container {
+    h2 {
+    color: red;
+    text-decoration: underline;
+    }
+}
+.var {
+    color: red;
+}
+.costo {
+    font-size: 20px;
+    animation: cambiaColor 3s infinite; 
+    border: 1px solid black;
+}
+@keyframes cambiaColor {
+    0% {
+      color: red; /* Color inicial del texto */
+    }
+    50% {
+      color: blue; /* Color a la mitad de la animación */
+    }
+    100% {
+      color: green; /* Color al final de la animación */
+    }
+  }

@@ -1,8 +1,32 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&family=Sedgwick+Ave+Display&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
+
+.resultado-container h2 {
+  color: red;
+  text-decoration: underline; }
+
+.var {
+  color: red; }
+
+.costo {
+  font-size: 20px;
+  animation: cambiaColor 3s infinite;
+  border: 1px solid black; }
+
+@keyframes cambiaColor {
+  0% {
+    color: red;
+    /* Color inicial del texto */ }
+  50% {
+    color: blue;
+    /* Color a la mitad de la animación */ }
+  100% {
+    color: green;
+    /* Color al final de la animación */ } }
 
 header {
   border-bottom: 2px solid black; }
@@ -107,8 +131,8 @@ main {
   height: 100px;
   position: absolute;
   left: -50px;
-  transform: translateY(-50%) ;
-  transition: transform 5s linear;}
+  transform: translateY(-50%);
+  transition: transform 5s linear; }
 
 .imagen {
   width: 100px;

@@ -174,14 +174,14 @@ function calcularCotizacion() {
  let resultadoHTML = `
  <div class="resultado-container">
    <h2>Costo:</h2>
-   <p>Nombre: ${nombreGuardado}</p>
-   <p>Apellido: ${apellidoGuardado}</p>
-   <p>DNI: ${dniGuardado}</p>
-   <p>Correo: ${correoGuardado}</p>
-   <p>Marca: ${marca}</p>
-   <p>Modelo: ${modelo}</p>
-   <p>Año: ${anio}</p>
-   <p>Precio Total: $${precioBase}</p>
+   <p>Nombre:<span class="var"> ${nombreGuardado}</span></p>
+   <p>Apellido: <span class="var"> ${apellidoGuardado}</span></p>
+   <p>DNI: <span class="var"> ${dniGuardado}</span></p>
+   <p>Correo: <span class="var"> ${correoGuardado}</span></p>
+   <p>Marca: <span class="var"> ${marca}</span></p>
+   <p>Modelo: <span class="var"> ${modelo}</span></p>
+   <p>Año: <span class="var"> ${anio}</span></p>
+   <p class= "costo">Precio Total: <span class="var"> $${precioBase}</span></p>
  </div>
 `;
 
