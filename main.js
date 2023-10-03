@@ -146,21 +146,10 @@ document.getElementById("botonContratar").addEventListener("click", () => {
 });
 
 function calcularCotizacion() {
-  let resultadoHTML = "<h2>Costo:</h2>";
-  resultadoHTML += "<p>Nombre: " + nombreGuardado + "</p>";
-  resultadoHTML += "<p>Apellido: " + apellidoGuardado + "</p>";
-  resultadoHTML += "<p>DNI: " + dniGuardado + "</p>";
-  resultadoHTML += "<p>Correo: " + correoGuardado + "</p>";
-
   // traer los valores seleccionados de los elementos <select>
   const marca = selectMarca.value;
   const modelo = selectModelo.value;
   const anio = selectAnio.value;
-
-  resultadoHTML += "<p>Marca: " + marca + "</p>";
-  resultadoHTML += "<p>Modelo: " + modelo + "</p>";
-  resultadoHTML += "<p>Año: " + anio + "</p>";
-
   // precio base según la marca seleccionada
   let precioBase = preciosBase[marca] || 0;
 
@@ -181,8 +170,20 @@ function calcularCotizacion() {
   }else if (anio === "2020") {
     precioBase += 1200; 
   }
-
-  resultadoHTML += "<p>Precio Total: $" + precioBase + "</p>";
+ // Crear el resultado HTML con clases de estilo
+ let resultadoHTML = `
+ <div class="resultado-container">
+   <h2>Costo:</h2>
+   <p>Nombre: ${nombreGuardado}</p>
+   <p>Apellido: ${apellidoGuardado}</p>
+   <p>DNI: ${dniGuardado}</p>
+   <p>Correo: ${correoGuardado}</p>
+   <p>Marca: ${marca}</p>
+   <p>Modelo: ${modelo}</p>
+   <p>Año: ${anio}</p>
+   <p>Precio Total: $${precioBase}</p>
+ </div>
+`;
 
   let resultadoElement = document.getElementById("resultado");
   resultadoElement.innerHTML = resultadoHTML;
