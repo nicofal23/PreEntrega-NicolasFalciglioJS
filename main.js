@@ -89,9 +89,30 @@ selectModelo.addEventListener("change", () => {
 
 
 
+
+
 document.getElementById("botonContratar").addEventListener("click", () => {
-  alert("¡Contratación exitosa!");
+  Swal.fire({
+    title: 'Contratación exitosa!',
+    icon: 'success',
+    confirmButtonText: 'Cerrar'
+  });
 });
+
+//mostrar fecha 
+const fechaHoy = new Date();
+const dia = fechaHoy.getDate();
+const mes = fechaHoy.getMonth() + 1;
+const anio = fechaHoy.getFullYear();
+const fechaActual = `${dia}/${mes}/${anio}`;
+localStorage.setItem('fecha', fechaActual);
+const fechaAlmacenada = localStorage.getItem('fecha');
+const elementoFecha = document.getElementById('fecha');
+
+elementoFecha.textContent = fechaAlmacenada;
+
+
+
 
 // Función para mostrar la segunda pestaña al hacer clic en el botón "siguiente" en la primera pestaña
 document.getElementById("botonSiguiente").addEventListener("click", () => {
@@ -126,7 +147,6 @@ document.getElementById("botonSiguiente2").addEventListener("click", (e) => {
   dniGuardado = document.getElementById("dni").value;
   correoGuardado = document.getElementById("correo").value;
 
-  // Verificar si se han completado los datos antes de avanzar
   if (nombreGuardado && apellidoGuardado && dniGuardado && correoGuardado) {
     // Habilitar y activar la pestaña "Costo"
     document.getElementById("contact-tab").removeAttribute("disabled");
@@ -134,13 +154,17 @@ document.getElementById("botonSiguiente2").addEventListener("click", (e) => {
     document.getElementById("contact-tab-pane").classList.add("show", "active");
     // Calcular la cotización
     calcularCotizacion();
-  } else {
-    // Mostrar un mensaje de error si no se completaron los datos
-    alert("Por favor, complete todos los campos antes de continuar.");
+} else {
+    // Mostrar un mensaje de error si no se completaron los datos usando SweetAlert
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, complete todos los campos antes de continuar.',
+    });
     // Evitar cambiar de pestaña si los campos no están completos
     return;
-  }
-}
+}}
+
 
 
 function calcularCotizacion() {
@@ -194,6 +218,5 @@ if (anio >= "1954" && anio <= "2023") {
 }
 
 
-console.log (new Date)
 
 
