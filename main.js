@@ -114,65 +114,98 @@ elementoFecha.textContent = fechaAlmacenada;
 
 
 
-// Función para mostrar la segunda pestaña al hacer clic en el botón "siguiente" en la primera pestaña
-document.getElementById("botonSiguiente").addEventListener("click", () => {
-  // Ocultar la primera pestaña
-  document.getElementById("home-tab-pane").classList.remove("show", "active");
-  // Quitar la clase "active" del botón de la primera pestaña
-  document.getElementById("home-tab").classList.remove("active");
-  // Mostrar la segunda pestaña
-  document.getElementById("profile-tab-pane").classList.add("show", "active");
-  // Agregar la clase "active" al botón de la segunda pestaña
-  document.getElementById("profile-tab").classList.add("active");
-});
+// Función para controlar el estado de las pestañas y el cambio entre ellas
+function controlarPestanas() {
+  const selectMarca = document.getElementById("marca");
+  const selectModelo = document.getElementById("modelo");
+  const selectAnio = document.getElementById("anio");
+  const nombreInput = document.getElementById("nombre");
+  const apellidoInput = document.getElementById("apellido");
+  const dniInput = document.getElementById("dni");
+  const correoInput = document.getElementById("correo");
 
- // Función para mostrar la tercer pestaña al hacer clic en el botón "siguiente" en la segunda pestaña
-document.getElementById("botonSiguiente2").addEventListener("click", (e) => {
-  e.preventDefault();
- // Ocultar la segunda pestaña
-  document.getElementById("profile-tab-pane").classList.remove("show", "active");
- // Quitar la clase "active" del botón de la segunda pestaña
- document.getElementById("profile-tab").classList.remove("active");
- // Mostrar la tercera pestaña
- document.getElementById("contact-tab-pane").classList.add("show", "active");
- // Agregar la clase "active" al botón de la tercera pestaña
- document.getElementById("contact-tab").classList.add("active");
- mostrarPerfil1();
- });
+  // Obtener los botones de las pestañas
+  const botonSiguiente = document.getElementById("botonSiguiente");
+  const botonSiguiente2 = document.getElementById("botonSiguiente2");
 
- function mostrarPerfil1() {
-  // Obtener los valores ingresados por el usuario
-  nombreGuardado = document.getElementById("nombre").value;
-  apellidoGuardado = document.getElementById("apellido").value;
-  dniGuardado = document.getElementById("dni").value;
-  correoGuardado = document.getElementById("correo").value;
+  // Bloquear todas las pestañas excepto la primera (home-tab)
+  const pestanas = document.querySelectorAll('.nav-link');
+  pestanas.forEach(pestaña => {
+    if (pestaña.id !== "home-tab") {
+      pestaña.setAttribute('disabled', true);
+    }
+  });
 
-  if (nombreGuardado && apellidoGuardado && dniGuardado && correoGuardado) {
-    // Habilitar y activar la pestaña "Costo"
-    document.getElementById("contact-tab").removeAttribute("disabled");
-    document.getElementById("contact-tab").classList.add("active");
-    document.getElementById("contact-tab-pane").classList.add("show", "active");
-    // Calcular la cotización
-    calcularCotizacion();
-} else {
-    // Mostrar un mensaje de error si no se completaron los datos usando SweetAlert
-    Swal.fire({
+  // Agregar evento al botón "Siguiente" de la primera pestaña
+  botonSiguiente.addEventListener("click", () => {
+    // Verificar si los campos de selección están completos
+    if (selectMarca.value && selectModelo.value && selectAnio.value) {
+      // Desbloquear la segunda pestaña y bloquear las demás
+      pestanas.forEach(pestaña => {
+        if (pestaña.id === "profile-tab") {
+          pestaña.removeAttribute('disabled');
+        } else {
+          pestaña.setAttribute('disabled', true);
+        }
+      });
+
+      // Mostrar la segunda pestaña
+      document.getElementById("home-tab-pane").classList.remove("show", "active");
+      document.getElementById("home-tab").classList.remove("active");
+      document.getElementById("profile-tab-pane").classList.add("show", "active");
+      document.getElementById("profile-tab").classList.add("active");
+      calcularCotizacion();
+    } else {
+      // Mostrar mensaje de error si los campos no están completos
+      Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'Por favor, complete todos los campos antes de continuar.',
-    });
-    // Evitar cambiar de pestaña si los campos no están completos
-    return;
-}}
+      });
+    }
+  });
+
+  // Agregar evento al botón "Siguiente2" de la segunda pestaña
+  botonSiguiente2.addEventListener("click", (e) => {
+    e.preventDefault();
+    // Verificar si los campos de texto están completos
+    if (nombreInput.value && apellidoInput.value && dniInput.value && correoInput.value) {
+      // Desbloquear la tercera pestaña y bloquear las demás
+      pestanas.forEach(pestaña => {
+        if (pestaña.id === "contact-tab") {
+          pestaña.removeAttribute('disabled');
+        } else {
+          pestaña.setAttribute('disabled', true);
+        }
+      });
+
+      // Mostrar la tercera pestaña
+      document.getElementById("profile-tab-pane").classList.remove("show", "active");
+      document.getElementById("profile-tab").classList.remove("active");
+      document.getElementById("contact-tab-pane").classList.add("show", "active");
+      document.getElementById("contact-tab").classList.add("active");
+      calcularCotizacion();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, complete todos los campos antes de continuar.',
+      });
+    }
+  });
+}
+
+// Llamar a la función para controlar las pestañas cuando se carga la página
+document.addEventListener("DOMContentLoaded", controlarPestanas);
 
 
 
 function calcularCotizacion() {
-  // traer los valores seleccionados de los elementos <select>
+  // Traer los valores seleccionados de los elementos <select>
   const marca = selectMarca.value;
   const modelo = selectModelo.value;
   const anio = selectAnio.value;
-  // precio base según la marca seleccionada
+  // Precio base según la marca seleccionada
   let precioBase = preciosBase[marca] || 0;
 
   // Agregar precios adicionales 
@@ -182,36 +215,34 @@ function calcularCotizacion() {
     precioBase += 1200; 
   }
 
- //costo segun año
-const añoActual = 2023;
-const factorDeDescuento = 0.05; // 5%
+  // Costo según el año
+  const añoActual = 2023;
+  const factorDeDescuento = 0.05; // 5%
 
-// Verificar si el año está entre 1954 y 2023
-if (anio >= "1954" && anio <= "2023") {
+  // Verificar si el año está entre 1954 y 2023
+  if (anio >= "1954" && anio <= "2023") {
     const añosDiferencia = añoActual - anio;
     const descuento = añosDiferencia * factorDeDescuento;
     const precioConDescuento = precioBase - precioBase * descuento;
 
-    
-    //establecer un precio mínimo de $14,000 si el resultado da negativo 
+    // Establecer un precio mínimo de $14,000 si el resultado da negativo 
     precioBase = Math.max(Math.ceil(precioConDescuento), 14000);
-}
+  }
 
-
- // Crear el resultado HTML con clases de estilo
- let resultadoHTML = `
- <div class="resultado-container">
-   <h2>Costo:</h2>
-   <p>Nombre:<span class="var"> ${nombreGuardado}</span></p>
-   <p>Apellido: <span class="var"> ${apellidoGuardado}</span></p>
-   <p>DNI: <span class="var"> ${dniGuardado}</span></p>
-   <p>Correo: <span class="var"> ${correoGuardado}</span></p>
-   <p>Marca: <span class="var"> ${marca}</span></p>
-   <p>Modelo: <span class="var"> ${modelo}</span></p>
-   <p>Año: <span class="var"> ${anio}</span></p>
-   <p class= "costo">Precio Total: <span class="var"> $${precioBase}</span></p>
- </div>
-`;
+  // Crear el resultado HTML con clases de estilo
+  let resultadoHTML = `
+    <div class="resultado-container">
+      <h2>Costo:</h2>
+      <p>Nombre:<span class="var"> ${nombreGuardado}</span></p>
+      <p>Apellido: <span class="var"> ${apellidoGuardado}</span></p>
+      <p>DNI: <span class="var"> ${dniGuardado}</span></p>
+      <p>Correo: <span class="var"> ${correoGuardado}</span></p>
+      <p>Marca: <span class="var"> ${marca}</span></p>
+      <p>Modelo: <span class="var"> ${modelo}</span></p>
+      <p>Año: <span class="var"> ${anio}</span></p>
+      <p class= "costo">Precio Total: <span class="var"> $${precioBase}</span></p>
+    </div>
+  `;
 
   let resultadoElement = document.getElementById("resultado");
   resultadoElement.innerHTML = resultadoHTML;
