@@ -13,7 +13,7 @@ class Vehiculo {
     this.marca = marca;
   }
 }
- 
+
 const vehiculos = [
   new Vehiculo("Chevrolet"),
   new Vehiculo("Ford"),
@@ -113,7 +113,6 @@ elementoFecha.textContent = fechaAlmacenada;
 
 
 
-
 // Función para controlar el estado de las pestañas y el cambio entre ellas
 function controlarPestanas() {
   const selectMarca = document.getElementById("marca");
@@ -200,35 +199,51 @@ document.addEventListener("DOMContentLoaded", controlarPestanas);
 
 
 
+// ... (código anterior)
+
 function calcularCotizacion() {
-  // Traer los valores seleccionados de los elementos <select>
-  const marca = selectMarca.value;
-  const modelo = selectModelo.value;
-  const anio = selectAnio.value;
-  // Precio base según la marca seleccionada
-  let precioBase = preciosBase[marca] || 0;
+  return new Promise((resolve, reject) => {
+    // Traer los valores seleccionados de los elementos <select>
+    const marca = selectMarca.value;
+    const modelo = selectModelo.value;
+    const anio = selectAnio.value;
 
-  // Agregar precios adicionales 
-  if (modelo === "Agile") {
-    precioBase += 1000; 
-  } else if (modelo === "Aveo") {
-    precioBase += 1200; 
-  }
+    // Precio base según la marca seleccionada
+    let precioBase = preciosBase[marca] || 0;
 
-  // Costo según el año
-  const añoActual = 2023;
-  const factorDeDescuento = 0.05; // 5%
+    // Agregar precios adicionales 
+    if (modelo === "Agile") {
+      precioBase += 1000; 
+    } else if (modelo === "Aveo") {
+      precioBase += 1200; 
+    }
 
-  // Verificar si el año está entre 1954 y 2023
-  if (anio >= "1954" && anio <= "2023") {
-    const añosDiferencia = añoActual - anio;
-    const descuento = añosDiferencia * factorDeDescuento;
-    const precioConDescuento = precioBase - precioBase * descuento;
+    // Costo según el año
+    const añoActual = 2023;
+    const factorDeDescuento = 0.05; // 5%
 
-    // Establecer un precio mínimo de $14,000 si el resultado da negativo 
-    precioBase = Math.max(Math.ceil(precioConDescuento), 14000);
-  }
+    // Verificar si el año está entre 1954 y 2023
+    if (anio >= "1954" && anio <= "2023") {
+      const añosDiferencia = añoActual - anio;
+      const descuento = añosDiferencia * factorDeDescuento;
+      const precioConDescuento = precioBase - precioBase * descuento;
 
+      // Establecer un precio mínimo de $14,000 si el resultado da negativo 
+      precioBase = Math.max(Math.ceil(precioConDescuento), 14000);
+    }
+
+    // Crear un objeto con el precio base y el precio total
+    const resultado = {
+      precioBase: precioBase,
+      precioTotal: precioBase
+    };
+
+    // Resolver la promesa con el objeto resultado
+    resolve(resultado);
+  });
+}
+
+function mostrarResultadoEnDOM(resultado) {
   // Crear el resultado HTML con clases de estilo
   let resultadoHTML = `
     <div class="resultado-container">
@@ -237,16 +252,31 @@ function calcularCotizacion() {
       <p>Apellido: <span class="var"> ${apellidoGuardado}</span></p>
       <p>DNI: <span class="var"> ${dniGuardado}</span></p>
       <p>Correo: <span class="var"> ${correoGuardado}</span></p>
-      <p>Marca: <span class="var"> ${marca}</span></p>
-      <p>Modelo: <span class="var"> ${modelo}</span></p>
-      <p>Año: <span class="var"> ${anio}</span></p>
-      <p class= "costo">Precio Total: <span class="var"> $${precioBase}</span></p>
+      <p>Marca: <span class="var"> ${selectMarca.value}</span></p>
+      <p>Modelo: <span class="var"> ${selectModelo.value}</span></p>
+      <p>Año: <span class="var"> ${selectAnio.value}</span></p>
+      <p class= "costo">Precio Total: <span class="var"> $${resultado.precioTotal}</span></p>
     </div>
   `;
 
   let resultadoElement = document.getElementById("resultado");
   resultadoElement.innerHTML = resultadoHTML;
 }
+
+document.getElementById("botonSiguiente2").addEventListener("click", () => {
+  nombreGuardado = document.getElementById("nombre").value;
+  apellidoGuardado = document.getElementById("apellido").value;
+  dniGuardado = document.getElementById("dni").value;
+  correoGuardado = document.getElementById("correo").value;
+  calcularCotizacion()
+    .then(resultado => {
+      mostrarResultadoEnDOM(resultado);
+    })
+    .catch(error => {
+      console.error("Error al calcular la cotización:", error);
+    });
+});
+
 
 
 

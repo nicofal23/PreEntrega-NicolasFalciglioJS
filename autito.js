@@ -18,5 +18,5 @@ document.addEventListener("DOMContentLoaded", function () {
                 requestAnimationFrame(moveCar);
             }
         });
-    }, 1000); // Espera 1 segundo antes de iniciar la animación
-  });
+    }, 5000); 
+});
