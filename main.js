@@ -14,34 +14,24 @@ class Vehiculo {
   }
 }
 
-const vehiculos = [
-  new Vehiculo("Chevrolet"),
-  new Vehiculo("Ford"),
-  new Vehiculo("Peugeot"),
-  new Vehiculo("Citroen"),
-  new Vehiculo("Renault"),
-  new Vehiculo("Volkswagen"), 
-  new Vehiculo("Toyota"),
-  new Vehiculo("Honda"),
-  new Vehiculo("Hyundai"),
-  new Vehiculo("Kia"),
-  new Vehiculo("MercedesBenz"),
-  new Vehiculo("BMW"),
-  new Vehiculo("Audi"),
-];
 
-
-// Función para llenar el select de marcas
-function llenarSelectMarca() {
-  vehiculos.forEach(vehiculo => {
-    const option = document.createElement("option");
-    option.value = vehiculo.marca;
-    option.textContent = vehiculo.marca;
-    selectMarca.appendChild(option);
+//fetch de archivo JSON
+fetch('vehiculos.json')
+  .then(response => response.json()) 
+  .then(data => {
+    data.forEach(vehiculo => {
+      const option = document.createElement("option");
+      option.value = vehiculo.marca;
+      option.textContent = vehiculo.marca;
+      selectMarca.appendChild(option);
+    });
+  })
+  .catch(error => {
+    console.error('Error al obtener los datos:', error);
   });
-}
-// Llenar el select de marcas al cargar la página
-llenarSelectMarca();
+
+
+
 
 // Función para completar año y modelo dependiendo la marca
 function llenarSelectAnio(marca, modelo) {
@@ -280,4 +270,20 @@ document.getElementById("botonSiguiente2").addEventListener("click", () => {
 
 
 
+
+botonSiguiente.addEventListener("click", () => {
+  const marcaSeleccionada = selectMarca.value;
+  const modeloSeleccionado = selectModelo.value;
+  const anioSeleccionado = selectAnio.value;
+  if (!marcaSeleccionada || !modeloSeleccionado || !anioSeleccionado) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Por favor, complete la selección de marca, modelo y año antes de continuar.',
+    });
+  } else {
+    // Desbloquear la siguiente pestaña y avanzar
+    // Resto del código para avanzar a la siguiente pestaña
+  }
+});
 
