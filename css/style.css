@@ -96,18 +96,26 @@ main {
     margin: 2px; }
   .show .buton {
     display: flex;
-    justify-content: center; }
+    justify-content: center;
+    /* Cambiar color de fondo al pasar el mouse sobre el botón */ }
     .show .buton .boton {
-      margin: 10px;
-      color: black;
-      padding: 14px 28px;
-      cursor: pointer;
+      margin: 20px;
+      background-color: #0B7DDA;
+      /* Color de fondo */
+      color: white;
+      /* Color del texto */
+      padding: 10px 20px;
+      /* Espaciado interno */
+      border: none;
+      /* Sin borde */
       border-radius: 5px;
-      background-color: #19048f;
-      border: 2px solid #0b7dda; }
-      .show .buton .boton {
-        background: #0b7dda;
-        color: #470bee; }
+      /* Borde redondeado */
+      cursor: pointer;
+      /* Cursor de puntero al pasar el mouse */
+      transition: background-color 0.3s ease;
+      /* Transición suave para el color de fondo */ }
+    .show .buton .boton:hover {
+      background-color: #71abdb; }
 
 .colum2 {
   display: flex; }
@@ -150,6 +158,26 @@ main {
   #contact_form .form-row div {
     margin: 15px; }
 
+.boton-enviar {
+  background-color: #0B7DDA;
+  /* Color de fondo */
+  color: white;
+  /* Color del texto */
+  padding: 10px 20px;
+  /* Espaciado interno */
+  border: none;
+  /* Sin borde */
+  border-radius: 5px;
+  /* Borde redondeado */
+  cursor: pointer;
+  /* Cursor de puntero al pasar el mouse */
+  transition: background-color 0.3s ease;
+  /* Transición suave para el color de fondo */ }
+
+/* Cambiar color de fondo al pasar el mouse sobre el botón */
+.boton-enviar:hover {
+  background-color: #71abdb; }
+
 @media (max-width: 1024px) {
   main .contenedor {
     margin-left: .0625rem; } }
@@ -171,7 +199,7 @@ main {
       flex-direction: column;
       margin: 1.75rem;
       width: 80%;
-      height: 47vh;
+      height: 67vh;
       margin-top: 6rem; } }
 
 @media (max-width: 440px) {

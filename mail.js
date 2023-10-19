@@ -39,7 +39,7 @@ apellidoInput2.value = apellidoInput.value;
                     <textarea id="message" name="message" rows="4" cols="50" required>${mensajeGuardado}</textarea>
                 </div>
                 <div class="form-btn">
-                    <input type="submit" value="Enviar">
+                    <input type="submit" class="boton-enviar" value="Enviar">
                 </div>
             </form>
         `;

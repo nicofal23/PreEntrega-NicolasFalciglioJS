@@ -84,15 +84,19 @@ main{
         display: flex;
         justify-content: center;
         .boton {
-            margin: 10px;
-            color: $colornegro; 
-            padding: 14px 28px; 
-            cursor: pointer; 
-            border-radius: 5px;
-            background-color: $colorazul; border: 2px solid $colorceleste;
-            &{
-                background: $colorceleste; color: $colorturque;
-            }
+            margin: 20px;
+            background-color: #0B7DDA; /* Color de fondo */
+            color: white; /* Color del texto */
+            padding: 10px 20px; /* Espaciado interno */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Borde redondeado */
+            cursor: pointer; /* Cursor de puntero al pasar el mouse */
+            transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+        }
+        
+        /* Cambiar color de fondo al pasar el mouse sobre el botón */
+        .boton:hover {
+            background-color: #71abdb;
         }
     } 
 }
@@ -142,4 +146,19 @@ main{
             margin: 15px;
         }
     }
+}
+
+.boton-enviar {
+    background-color: #0B7DDA; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer; /* Cursor de puntero al pasar el mouse */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+
+/* Cambiar color de fondo al pasar el mouse sobre el botón */
+.boton-enviar:hover {
+    background-color: #71abdb;
 }
