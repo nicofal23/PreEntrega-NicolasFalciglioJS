@@ -77,7 +77,12 @@ apellidoInput2.value = apellidoInput.value;
                         icon: 'success',
                         title: 'Éxito',
                         text: 'El correo electrónico se ha enviado correctamente.',
-                    });
+                    }).then((result) => {
+                        // Refrescar la página cuando el usuario hace clic en 'OK'
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });            
             
                     // Limpiar los campos del formulario
                     userName.value = '';

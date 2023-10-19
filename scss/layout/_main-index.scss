@@ -42,8 +42,8 @@ main{
             border: 1px solid $colornegro;
             flex-direction: column;
             margin: 3.75rem;
-            width: 50%;
-            height: 53vh;
+            width: 60%;
+            height: 63vh;
             margin-top: 5.5rem;   
         }
     }
@@ -127,11 +127,19 @@ main{
     width: 100px;
     height: 100px;
 }
-.form-container {
-    width: 300px; /* Establece el ancho del contenedor */
-    margin: 0 auto; /* Centra el contenedor horizontalmente */
-    text-align: center; /* Centra el contenido del contenedor */
-    padding: 20px; /* Agrega un poco de espacio interno al contenedor */
-    border: 1px solid #ccc; /* Agrega un borde al contenedor si deseas */
-    border-radius: 5px; /* Agrega esquinas redondeadas al contenedor si deseas */
+#contact_form {
+    width: 300px; 
+    margin: 20px auto; 
+    text-align: center; 
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    #message {
+        width: 200px;
+    }
+    .form-row {
+        div {
+            margin: 15px;
+        }
+    }
 }
