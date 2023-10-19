@@ -9,7 +9,6 @@ nombreInput2.value = nombreInput.value;
 const apellidoInput = document.getElementById("apellido");
 const apellidoInput2 = document.getElementById("apellido");
 apellidoInput2.value = apellidoInput.value;
-
     // Obtén el botón "Contratar" por su ID
     const botonContratar = document.getElementById('botonContratar');
     // Agrega un evento click al botón "Contratar"
@@ -44,7 +43,6 @@ apellidoInput2.value = apellidoInput.value;
                 </div>
             </form>
         `;
-
         // Reemplaza el contenido del contenedor con el formulario
         contenedor.innerHTML = formularioHTML;
         
@@ -53,7 +51,6 @@ apellidoInput2.value = apellidoInput.value;
         const userName = document.querySelector('#nombre');
         const userTel = document.querySelector('#telefono');
         const message = document.querySelector('#message');
-
         // Agrega un evento submit al formulario
         contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
@@ -67,7 +64,6 @@ apellidoInput2.value = apellidoInput.value;
                     'message': message.value,
                 }
             };
-
             try {
                 const response = await sendEmail(body);
                 console.log(response);
@@ -83,7 +79,6 @@ apellidoInput2.value = apellidoInput.value;
                             location.reload();
                         }
                     });            
-            
                     // Limpiar los campos del formulario
                     userName.value = '';
                     userTel.value = '';  // Corregí userEmail por userTel
@@ -97,7 +92,6 @@ apellidoInput2.value = apellidoInput.value;
                 showErrorAlert();
             }
         });
-
         const showErrorAlert = () => {
             Swal.fire({
                 icon: 'error',
@@ -105,7 +99,6 @@ apellidoInput2.value = apellidoInput.value;
                 text: 'Ocurrió un problema al enviar el correo electrónico. Por favor, inténtalo de nuevo más tarde.',
             });
         };
-
         const sendEmail = async (body) => {
             const settings = {
                 method: 'POST',
@@ -114,7 +107,6 @@ apellidoInput2.value = apellidoInput.value;
                 },
                 body: JSON.stringify(body)
             };
-
             const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", settings);
             const data = await response.text(); // Obtener la respuesta como texto
             return data;
