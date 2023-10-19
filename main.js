@@ -81,13 +81,13 @@ selectModelo.addEventListener("change", () => {
 
 
 
-document.getElementById("botonContratar").addEventListener("click", () => {
-  Swal.fire({
-    title: 'Contratación exitosa!',
-    icon: 'success',
-    confirmButtonText: 'Cerrar'
-  });
-});
+// document.getElementById("botonContratar").addEventListener("click", () => {
+//   Swal.fire({
+//     title: 'Contratación exitosa!',
+//     icon: 'success',
+//     confirmButtonText: 'Cerrar'
+//   });
+// });
 
 //mostrar fecha 
 const fechaHoy = new Date();
@@ -286,4 +286,6 @@ botonSiguiente.addEventListener("click", () => {
     // Resto del código para avanzar a la siguiente pestaña
   }
 });
+
+
 
